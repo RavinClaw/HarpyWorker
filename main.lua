@@ -10,8 +10,21 @@ local raw_message = textutils.serialiseJSON(json_message)
 ws.send(raw_message)
 
 
+local function getChatHandle()
+    local event, username, message, uuid, isHidden = os.pullEvent("chat")
+    
+    local chat_event_message = {
+        ["chat-message"] = {
+            ["username"] = username,
+            ["uuid"] = uuid,
+            ["is-hidden"] = isHidden,
+            ["message"] = message
+        }
+    }
+    ws.send(textutils.serialiseJSON(chat_event_message))
+end
 
-while true do
+local function handleWebSocket()
     local raw_info = ws.receive()
     local json_info = textutils.unserialiseJSON(raw_info)
 
@@ -61,4 +74,8 @@ while true do
 
     -- Sends a response to the client
     ws.send(textutils.serialiseJSON(response))
+end
+
+while true do
+    parallel.waitForAny(getChatHandle, handleWebSocket)
 end
