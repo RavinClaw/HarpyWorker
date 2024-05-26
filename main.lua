@@ -30,6 +30,8 @@ local function handleWebSocket()
 
     if json_info["success"] ~= false then
         print(json_info)
+    elseif json_info["success"] then
+        print(json_info)
     end
     local response = {
         ["success"] = false
