@@ -16,6 +16,7 @@ while true do
 
     if json_info["success"] ~= false then
         print(json_info)
+    end
     local response = {
         ["success"] = false
     }
