@@ -3,7 +3,8 @@ local chatbox = peripheral.find("chatBox")
 
 local json_message = {
     ["username"] = os.getComputerLabel(),
-    ["id"] = os.getComputerID()
+    ["id"] = os.getComputerID(),
+    ["act"] = "connect"
 }
 
 local raw_message = textutils.serialiseJSON(json_message)
