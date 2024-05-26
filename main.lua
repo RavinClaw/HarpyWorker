@@ -1,5 +1,5 @@
 local ws = http.websocket("ws://192.168.1.25:5858")
-local chatbox = peripheral.find()
+local chatbox = peripheral.find("chatBox")
 
 local json_message = {
     ["username"] = os.getComputerLabel(),
@@ -54,7 +54,7 @@ while true do
         response["success"] = true
         response["slot"] = turtle.getItemDetail(turtle.getSelectedSlot())
     elseif json_info["action"] == "chat" then
-        chatbox.sendMessage(string.format("[%s] %s", turtle.getComputerLabel(), json_info["type"]))
+        chatbox.sendMessage(json_info["type"], os.getComputerLabel(), "<>")
         response["success"] = true
     end
 
