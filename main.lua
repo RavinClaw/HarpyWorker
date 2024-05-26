@@ -14,14 +14,14 @@ while true do
     local raw_info = ws.receive()
     local json_info = textutils.unserialiseJSON(raw_info)
 
-    print(json_info)
+    if json_info["success"] ~= false then
+        print(json_info)
     local response = {
         ["success"] = false
     }
 
     if json_info == nil then
         -- This literraly does nothing
-        return
 
 
     elseif json_info["action"] == "movement" then
