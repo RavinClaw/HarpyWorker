@@ -54,7 +54,7 @@ while true do
 
     elseif json_info["action"] == "inspect" then
         response["success"] = true
-        response["block"] = turtle.inspect()
+        response["block"] = turtle.detect()
     
 
     elseif json_info["action"] == "fuel-level" then
@@ -64,7 +64,7 @@ while true do
     
     elseif json_info["action"] == "selected-slot" then
         response["success"] = true
-        response["slot"] = turtle.getSelectedSlot()
+        response["slot"] = turtle.getItemDetail(turtle.getSelectedSlot())
     end
 
     -- Sends a response to the client
