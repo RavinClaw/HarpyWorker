@@ -21,6 +21,7 @@ while true do
 
     if json_info == nil then
         -- This literraly does nothing
+        return
 
 
     elseif json_info["action"] == "movement" then
